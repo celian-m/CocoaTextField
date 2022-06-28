@@ -104,18 +104,18 @@ open class CocoaTextField: UITextField {
     
     //  MARK: Private
     
-    private func initializeTextField() {
+    open func initializeTextField() {
         configureTextField()
         configureHint()
         configureErrorLabel()
         addObservers()
     }
     
-    private func addObservers() {
+    open func addObservers() {
         addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
     }
     
-    private func configureTextField() {
+    open func configureTextField() {
         clearButtonMode = .whileEditing
         autocorrectionType = .no
         spellCheckingType = .no
@@ -124,13 +124,13 @@ open class CocoaTextField: UITextField {
         addSubview(hintLabel)
     }
     
-    private func configureHint() {
+    open func configureHint() {
         hintLabel.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         updateHint()
         hintLabel.textColor = inactiveHintColor
     }
 
-    private func updateHint() {
+    open func updateHint() {
         if isHintVisible {
             // Small placeholder
             hintLabel.alpha = 1
@@ -147,7 +147,7 @@ open class CocoaTextField: UITextField {
         }
     }
     
-    private func configureErrorLabel() {
+    open func configureErrorLabel() {
         errorLabel.font = UIFont.systemFont(ofSize: 12)
         errorLabel.textAlignment = .right
         errorLabel.textColor = errorColor
@@ -155,7 +155,7 @@ open class CocoaTextField: UITextField {
         addSubview(errorLabel)
     }
     
-    private func activateTextField() {
+    open func activateTextField() {
         if isHintVisible { return }
         isHintVisible.toggle()
         
@@ -169,7 +169,7 @@ open class CocoaTextField: UITextField {
         }
     }
     
-    private func deactivateTextField() {
+    open func deactivateTextField() {
         if !isHintVisible { return }
         isHintVisible.toggle()
         
@@ -181,11 +181,11 @@ open class CocoaTextField: UITextField {
         }
     }
     
-    private func hintHeight() -> CGFloat {
+    open func hintHeight() -> CGFloat {
         return hintFont.lineHeight - padding / 8
     }
     
-    private func updateErrorLabelPosition() {
+    open func updateErrorLabelPosition() {
         let size = errorLabel.sizeThatFits(CGSize(width: frame.width, height: CGFloat.greatestFiniteMagnitude))
         errorLabel.frame.size = size
         errorLabel.frame.origin.x = frame.width - size.width
