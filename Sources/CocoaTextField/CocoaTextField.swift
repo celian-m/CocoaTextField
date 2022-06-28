@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable
-public open class CocoaTextField: UITextField {
+open class CocoaTextField: UITextField {
     
     //  MARK: - Open variables -
     
