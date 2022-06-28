@@ -78,6 +78,15 @@ open class CocoaTextField: UITextField {
         get { return hintLabel.text }
     }
     
+        override open var attributedPlaceholder: NSAttributedString? {
+        set { hintLabel.attributedText = newValue }
+        get { return hintLabel.attributedText }
+    }
+    
+    public override var attributedText: NSAttributedString? {
+        didSet { updateHint() }
+    }
+    
     public override var text: String? {
         didSet { updateHint() }
     }
@@ -136,7 +145,7 @@ open class CocoaTextField: UITextField {
             hintLabel.alpha = 1
             hintLabel.transform = CGAffineTransform.identity.translatedBy(x: 0, y: -hintHeight())
             hintLabel.font = hintFont
-        } else if text?.isEmpty ?? true {
+        } else if (text?.isEmpty ?? true) && (attributedText?.string.isEmpty ?? true) {
             // Large placeholder
             hintLabel.alpha = 1
             hintLabel.transform = CGAffineTransform.identity.translatedBy(x: 0, y: 0)
